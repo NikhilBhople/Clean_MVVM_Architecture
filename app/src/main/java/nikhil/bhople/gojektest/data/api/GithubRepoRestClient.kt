@@ -6,7 +6,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-const val BASE_URL = "https://private-anon-7ed5492f4a-githubtrendingapi.apiary-proxy.com/"
+const val BASE_URL = "https://private-anon-7ed5492f4a-githubtrendingapi.apiary-proxy.com"
 
 object GithubRepoRestClient {
 
