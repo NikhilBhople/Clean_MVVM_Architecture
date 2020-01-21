@@ -10,4 +10,5 @@ class TrendingRepoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trending_repo)
     }
+
 }

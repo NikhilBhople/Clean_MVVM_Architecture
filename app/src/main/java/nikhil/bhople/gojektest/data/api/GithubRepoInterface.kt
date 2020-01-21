@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface GithubRepoInterface {
 
-    @GET("/list")
+    @GET("/repositories")
     fun fetchTrendingRepo(): Observable<List<RepoResponse>>
 }

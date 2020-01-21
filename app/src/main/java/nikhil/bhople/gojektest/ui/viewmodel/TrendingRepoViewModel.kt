@@ -1,4 +1,12 @@
 package nikhil.bhople.gojektest.ui.viewmodel
 
-class TrendingRepoViewModel {
+import androidx.lifecycle.ViewModel
+import nikhil.bhople.gojektest.ui.repository.TrendingRepoRepository
+
+class TrendingRepoViewModel(
+    private val repository: TrendingRepoRepository
+) : ViewModel() {
+
+
+
 }
