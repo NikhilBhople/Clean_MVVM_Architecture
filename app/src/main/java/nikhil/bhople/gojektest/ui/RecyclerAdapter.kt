@@ -14,16 +14,10 @@ import nikhil.bhople.gojektest.data.model.RepoResponse
 class RecyclerAdapter(val list: ArrayList<RepoResponse>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     private var mExpandedPosition = -1
-    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recycler_item, parent, false))
 
-    }
-
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        super.onAttachedToRecyclerView(recyclerView)
-        this.recyclerView = recyclerView
     }
 
     override fun getItemCount(): Int {
