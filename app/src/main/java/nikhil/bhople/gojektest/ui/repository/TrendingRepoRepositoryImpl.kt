@@ -1,19 +1,28 @@
 package nikhil.bhople.gojektest.ui.repository
 
 import androidx.lifecycle.LiveData
+import nikhil.bhople.gojektest.data.interactor.LocalDataSource
+import nikhil.bhople.gojektest.data.interactor.NetworkDataSource
 import nikhil.bhople.gojektest.data.model.NetworkState
 import nikhil.bhople.gojektest.data.model.RepoResponse
 
-class TrendingRepoRepositoryImpl : TrendingRepoRepository {
+class TrendingRepoRepositoryImpl(
+    private val localDS: LocalDataSource,
+    private val networkDS: NetworkDataSource
+) : TrendingRepoRepository {
+
+    //TODO return local data if available
+
     override fun getTrendingRepos(): LiveData<List<RepoResponse>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        networkDS.fetchRepos()
+        return networkDS.trendingRepo
     }
 
     override fun getNetworkState(): LiveData<NetworkState> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return networkDS.networkState
     }
 
     override fun onDestroy() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        networkDS.onDestroy()
     }
 }
