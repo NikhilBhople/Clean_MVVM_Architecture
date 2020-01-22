@@ -13,7 +13,7 @@ object GithubRepoRestClient {
     fun getClient(): GithubRepoInterface {
 
         val okHttpClient = OkHttpClient.Builder()
-            .connectTimeout(60, TimeUnit.SECONDS)
+            .connectTimeout(15, TimeUnit.SECONDS)
             .build()
 
         return Retrofit.Builder()

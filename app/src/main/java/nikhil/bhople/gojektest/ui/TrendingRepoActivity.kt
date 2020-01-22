@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_trending_repo.*
 import kotlinx.android.synthetic.main.error_layout.*
 import nikhil.bhople.gojektest.R
+import nikhil.bhople.gojektest.data.model.NetworkState
 import nikhil.bhople.gojektest.data.model.RepoResponse
 import nikhil.bhople.gojektest.data.model.Status
 import nikhil.bhople.gojektest.ui.viewmodel.TrendingRepoViewModel
@@ -32,6 +33,7 @@ class TrendingRepoActivity : AppCompatActivity(), KodeinAware {
         ViewModelProviders.of(this, factory).get(TrendingRepoViewModel::class.java)
     }
 
+    private var networkState: NetworkState = NetworkState.LOADED
     private val list = ArrayList<RepoResponse>()
     private val adapter by lazy {
         RecyclerAdapter(list, this)
@@ -48,15 +50,7 @@ class TrendingRepoActivity : AppCompatActivity(), KodeinAware {
         setUpRecyclerView()
         getData()
         handlePullToRefresh()
-    }
-
-    private fun handlePullToRefresh() {
-        swipe_container.setOnRefreshListener {
-            viewModel.fetchDataFromNetwork().observe(this, Observer {
-                swipe_container.isRefreshing = false
-                resetAdapter(it)
-            })
-        }
+        handleRetry()
     }
 
     private fun setUpRecyclerView() {
@@ -76,17 +70,52 @@ class TrendingRepoActivity : AppCompatActivity(), KodeinAware {
         })
 
         viewModel.networkState.observe(this, Observer {
-            val idd = it
-            layout_error.visibility = if (it.status == Status.FAILED) View.VISIBLE else View.GONE
+            networkState = it
+            if (it.status == Status.FAILED){
+                parent_shimmer_layout.stopShimmerAnimation()
+                swipe_container.isRefreshing = false
+                handleLayout(View.GONE, View.GONE, View.VISIBLE)
+            }else if (it.status == Status.SUCCESS){
+                parent_shimmer_layout.stopShimmerAnimation()
+                swipe_container.isRefreshing = false
+                handleLayout(View.VISIBLE, View.GONE, View.GONE)
+            }
             Log.e("NIK", "" + it.msg)
         })
+    }
+
+    private fun handleRetry() {
+        button_retry.setOnClickListener {
+            handleLayout(View.GONE, View.VISIBLE, View.GONE)
+            parent_shimmer_layout.startShimmerAnimation()
+            fetchFreshData()
+        }
+    }
+
+    private fun handleLayout(swipeContainer: Int, shimmerLayout: Int, error: Int) {
+        swipe_container.visibility = swipeContainer
+        parent_shimmer_layout.visibility = shimmerLayout
+        layout_error.visibility = error
+    }
+
+    private fun handlePullToRefresh() {
+        swipe_container.setOnRefreshListener {
+            fetchFreshData()
+        }
+    }
+
+    private fun fetchFreshData() {
+        if (networkState.status !=  Status.RUNNING) {
+            viewModel.fetchDataFromNetwork().observe(this, Observer {
+                swipe_container.isRefreshing = false
+                resetAdapter(it)
+            })
+        }
     }
 
     private fun resetAdapter(it: List<RepoResponse>) {
         list.clear()
         list.addAll(it)
-        parent_shimmer_layout.stopShimmerAnimation()
-        Log.e("NIK", "Success " + it.size)
         adapter.notifyDataSetChanged()
     }
 
@@ -100,23 +129,17 @@ class TrendingRepoActivity : AppCompatActivity(), KodeinAware {
         when (item!!.itemId) {
             R.id.menuSortByStars -> {
                 if (list.isNotEmpty()) {
-                    parent_shimmer_layout.startShimmerAnimation()
                     viewModel.filterList(true, list)
                 }
-                Toast.makeText(this, "you ckucje", Toast.LENGTH_SHORT).show()
             }
             R.id.menuSortByNames -> {
                 if (list.isNotEmpty()) {
-                    parent_shimmer_layout.startShimmerAnimation()
                     viewModel.filterList(false, list)
                 }
-                Toast.makeText(this, "you ckucje", Toast.LENGTH_SHORT).show()
             }
-
         }
         return true
     }
-
 
     override fun onStop() {
         super.onStop()

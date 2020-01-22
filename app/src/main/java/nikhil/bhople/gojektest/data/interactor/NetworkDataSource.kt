@@ -25,10 +25,8 @@ class NetworkDataSource(
         get() = _trendingRepos
 
     fun fetchRepos(){
-        Log.e(TAG, "getting form server")
-
-        _networkState.postValue(NetworkState.LOADING)
         try {
+            _networkState.postValue(NetworkState.LOADING)
             disposable.add(
                 apiService.fetchTrendingRepo()
                     .subscribeOn(Schedulers.io())
