@@ -36,17 +36,7 @@ class TrendingRepoRepositoryImpl(
     private fun isNetworkCallNeeded(): Boolean {
         val current = System.currentTimeMillis()
         val storedTime = localDS.getFirstItem()
-
-        // TODO update time to 2 hours = 7.2e+6
-        if (storedTime == null) {
-            return true
-        }else{
-            Log.e("NIK", "time: "+current.minus(storedTime.updateTime))
-            Log.e("NIK", ""+(current.minus(storedTime.updateTime) > 60000))
-            return (current.minus(storedTime.updateTime) > 60000)
-        }
-
-       // return if (storedTime == null) return true else (current.minus(storedTime.updateTime) > 60000)
+        return if (storedTime == null) return true else (current.minus(storedTime.updateTime) > 7.2e+6)
     }
 
     override fun onDestroy() {

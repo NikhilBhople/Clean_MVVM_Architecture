@@ -28,7 +28,7 @@ class TrendingRepoActivity : AppCompatActivity(), KodeinAware {
     override val kodein: Kodein by closestKodein()
 
     private val factory: TrendingRepoViewModelFactory by instance()
-    private val viewModel:TrendingRepoViewModel by lazy {
+    private val viewModel: TrendingRepoViewModel by lazy {
         ViewModelProviders.of(this, factory).get(TrendingRepoViewModel::class.java)
     }
 
@@ -47,6 +47,16 @@ class TrendingRepoActivity : AppCompatActivity(), KodeinAware {
         parent_shimmer_layout.startShimmerAnimation()
         setUpRecyclerView()
         getData()
+        handlePullToRefresh()
+    }
+
+    private fun handlePullToRefresh() {
+        swipe_container.setOnRefreshListener {
+            viewModel.fetchDataFromNetwork().observe(this, Observer {
+                swipe_container.isRefreshing = false
+                resetAdapter(it)
+            })
+        }
     }
 
     private fun setUpRecyclerView() {
@@ -67,8 +77,8 @@ class TrendingRepoActivity : AppCompatActivity(), KodeinAware {
 
         viewModel.networkState.observe(this, Observer {
             val idd = it
-            layout_error.visibility =  if (it.status == Status.FAILED) View.VISIBLE else View.GONE
-            Log.e("NIK",""+it.msg)
+            layout_error.visibility = if (it.status == Status.FAILED) View.VISIBLE else View.GONE
+            Log.e("NIK", "" + it.msg)
         })
     }
 

@@ -27,6 +27,10 @@ class TrendingRepoViewModel(
         repository.getNetworkState()
     }
 
+    fun fetchDataFromNetwork(): LiveData<List<RepoResponse>> {
+        return repository.fetchDataFromNetwork()
+    }
+
     override fun onCleared() {
         super.onCleared()
         repository.onDestroy()
