@@ -66,7 +66,6 @@ class TrendingRepoActivity : AppCompatActivity(), KodeinAware {
 
         viewModel.filterRepo.observe(this, Observer {
             resetAdapter(it)
-
         })
 
         viewModel.networkState.observe(this, Observer {
@@ -128,14 +127,10 @@ class TrendingRepoActivity : AppCompatActivity(), KodeinAware {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.menuSortByStars -> {
-                if (list.isNotEmpty()) {
-                    viewModel.filterList(true, list)
-                }
+                if (list.isNotEmpty()) viewModel.filterList(true, list)
             }
             R.id.menuSortByNames -> {
-                if (list.isNotEmpty()) {
-                    viewModel.filterList(false, list)
-                }
+                if (list.isNotEmpty()) viewModel.filterList(false, list)
             }
         }
         return true
