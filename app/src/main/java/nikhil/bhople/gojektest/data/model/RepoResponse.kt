@@ -8,10 +8,10 @@ import com.google.gson.annotations.SerializedName
 
 @Entity
 data class RepoResponse(
-    @PrimaryKey(autoGenerate = true) val id: Int? = null,
+    @PrimaryKey var id: Int,
 
     @ColumnInfo(name = "update_time")
-    val updateTime: Long?,
+    var updateTime: Long,
 
     @ColumnInfo(name = "author")
     val author: String,
@@ -23,9 +23,9 @@ data class RepoResponse(
     val description: String,
     @ColumnInfo(name = "forks")
     val forks: Int,
-    @ColumnInfo(name = "language")
+    @ColumnInfo(name = "language",defaultValue = "")
     val language: String,
-    @ColumnInfo(name = "languageColor")
+    @ColumnInfo(name = "languageColor", defaultValue = "")
     val languageColor: String,
     @ColumnInfo(name = "name")
     val name: String,

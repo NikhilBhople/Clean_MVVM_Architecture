@@ -22,6 +22,7 @@ abstract class RepoDatabase: RoomDatabase() {
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context.applicationContext,
                 RepoDatabase::class.java, "githubRepoDatabase.db")
+                .allowMainThreadQueries()
                 .build()
     }
 }

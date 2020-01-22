@@ -12,7 +12,7 @@ interface RepoDao {
     fun getAll(): List<RepoResponse>
 
     @Query("SELECT * FROM reporesponse WHERE id LIKE :id")
-    fun findByName(id: Int): RepoResponse
+    fun findById(id: Int): RepoResponse
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(data: List<RepoResponse>)
