@@ -1,29 +1,36 @@
 package nikhil.bhople.gojektest.data.model
 
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class RepoResponse(
-    @SerializedName("author")
+    @PrimaryKey(autoGenerate = true) val id: Int? = null,
+
+    @ColumnInfo(name = "update_time")
+    val updateTime: Long?,
+
+    @ColumnInfo(name = "author")
     val author: String,
     @SerializedName("avatar")
     val avatar: String,
-    @SerializedName("builtBy")
-    val builtBy: List<BuiltBy>,
-    @SerializedName("currentPeriodStars")
+    @ColumnInfo(name = "currentPeriodStars")
     val currentPeriodStars: Int,
-    @SerializedName("description")
+    @ColumnInfo(name = "description")
     val description: String,
-    @SerializedName("forks")
+    @ColumnInfo(name = "forks")
     val forks: Int,
-    @SerializedName("language")
+    @ColumnInfo(name = "language")
     val language: String,
-    @SerializedName("languageColor")
+    @ColumnInfo(name = "languageColor")
     val languageColor: String,
-    @SerializedName("name")
+    @ColumnInfo(name = "name")
     val name: String,
-    @SerializedName("stars")
+    @ColumnInfo(name = "stars")
     val stars: Int,
-    @SerializedName("url")
+    @ColumnInfo(name = "url")
     val url: String
 )
