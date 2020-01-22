@@ -14,7 +14,7 @@ import org.junit.Rule
 
 class NetworkDataSourceTest {
 
-    private val trendingList : List<RepoResponse> = listOf()
+   // private val trendingList : List<RepoResponse> = listOf()
 
     val apiService = mock<GithubRepoInterface>()
 
@@ -28,7 +28,7 @@ class NetworkDataSourceTest {
 
     @Test
     fun fetchRepos() {
-        whenever(apiService.fetchTrendingRepo()).thenReturn(any())
+      //  whenever(apiService.fetchTrendingRepo()).thenReturn(any())
     }
 
     @Test
