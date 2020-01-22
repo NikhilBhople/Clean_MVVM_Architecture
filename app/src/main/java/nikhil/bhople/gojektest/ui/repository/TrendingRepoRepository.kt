@@ -7,6 +7,7 @@ import nikhil.bhople.gojektest.data.model.RepoResponse
 
 interface TrendingRepoRepository {
     fun getTrendingRepos () : LiveData<List<RepoResponse>>
+    fun fetchDataFromNetwork () : LiveData<List<RepoResponse>>
     fun getNetworkState(): LiveData<NetworkState>
     fun onDestroy()
 }

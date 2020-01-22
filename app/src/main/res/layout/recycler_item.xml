@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="10dp"
-    android:layout_marginTop="2dp">
+    android:minWidth="64dp"
+    android:layout_marginTop="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,16 +13,16 @@
 
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:id="@+id/img_avatar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.18"
+            app:layout_constraintVertical_bias="0.07999998"
             app:srcCompat="@mipmap/ic_launcher" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -30,18 +30,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="96dp" />
+            app:layout_constraintGuide_begin="64dp" />
 
         <TextView
             android:id="@+id/txt_heading"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:autoText="true"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="TextView"
-            android:textSize="18sp"
+            android:textColor="@color/text_color"
+            android:textSize="15sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/txt_desc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/txt_name" />
@@ -51,8 +54,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:text="TextView"
+            android:layout_marginEnd="16dp"
+            style="@style/RegularText"
+            android:text="Text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent" />
@@ -62,9 +66,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:layout_marginEnd="16dp"
+            android:text="Text"
+            style="@style/RegularText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/txt_heading" />
 
@@ -73,70 +78,73 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="C++"
+            style="@style/RegularText"
             app:layout_constraintStart_toEndOf="@+id/img_circle"
             app:layout_constraintTop_toBottomOf="@+id/txt_desc" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/group"
-            android:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="visible"
             app:constraint_referenced_ids="txt_desc,txt_lang,txt_star,img_forks,txt_forks,img_circle,img_star" />
 
         <ImageView
             android:id="@+id/img_circle"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="16dp"
-            android:background="@android:color/holo_red_dark"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/circle_lang"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/txt_desc" />
 
         <ImageView
             android:id="@+id/img_star"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/star_yellow_16"
             app:layout_constraintStart_toEndOf="@+id/txt_lang"
             app:layout_constraintTop_toBottomOf="@+id/txt_desc" />
 
         <TextView
             android:id="@+id/txt_star"
+            style="@style/RegularText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:text="star"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_star"
             app:layout_constraintTop_toBottomOf="@+id/txt_desc" />
 
         <ImageView
             android:id="@+id/img_forks"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/fork_black_16"
             app:layout_constraintStart_toEndOf="@+id/txt_star"
-            app:layout_constraintTop_toBottomOf="@+id/txt_desc"
-            android:src="@drawable/fork_black_16" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_desc" />
 
         <TextView
             android:id="@+id/txt_forks"
+            style="@style/RegularText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
             android:text="forks"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_forks"
             app:layout_constraintTop_toBottomOf="@+id/txt_desc" />
 
-      <!--  <View
+        <!--  <View
             android:layout_width="0dp"
             android:layout_height="5dp"
             android:background="#eeeeee"

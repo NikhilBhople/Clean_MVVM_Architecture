@@ -32,6 +32,6 @@ class GojekApplication: Application(), KodeinAware  {
 
         bind<NetworkDataSource>() with singleton { NetworkDataSource(instance(), instance(), instance()) }
         bind<TrendingRepoRepository>() with singleton { TrendingRepoRepositoryImpl(instance(), instance()) }
-        bind<TrendingRepoViewModelFactory>() with provider { TrendingRepoViewModelFactory(instance()) }
+        bind<TrendingRepoViewModelFactory>() with provider { TrendingRepoViewModelFactory(instance(), instance()) }
     }
 }

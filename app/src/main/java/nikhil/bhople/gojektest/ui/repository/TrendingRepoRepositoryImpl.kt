@@ -24,6 +24,11 @@ class TrendingRepoRepositoryImpl(
         }
     }
 
+    override fun fetchDataFromNetwork(): LiveData<List<RepoResponse>> {
+        networkDS.fetchRepos()
+        return networkDS.trendingRepo
+    }
+
     override fun getNetworkState(): LiveData<NetworkState> {
         return networkDS.networkState
     }
@@ -32,6 +37,7 @@ class TrendingRepoRepositoryImpl(
         val current = System.currentTimeMillis()
         val storedTime = localDS.getFirstItem()
 
+        // TODO update time to 2 hours = 7.2e+6
         if (storedTime == null) {
             return true
         }else{
