@@ -25,4 +25,5 @@ Junit, Expresso -> will do in next push
 - how to decide, to fetch the data locally or form remote server<br>
 - how to use ConstraintLayout layout<br>
 - how to decoupled the code using Kodein(Dependency Injection)<br />
+- how to expand and collapse RecyclerView item<br>
 - and Much more..<br />
