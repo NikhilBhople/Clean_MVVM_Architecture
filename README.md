@@ -27,3 +27,5 @@ Junit, Expresso -> will do in next push
 - how to decoupled the code using Kodein(Dependency Injection)<br />
 - how to expand and collapse RecyclerView item<br>
 - and Much more..<br />
+
+<a href="https://imgflip.com/gif/3nymkb"><img src="https://i.imgflip.com/3nymkb.gif" title="made at imgflip.com"/></a>
