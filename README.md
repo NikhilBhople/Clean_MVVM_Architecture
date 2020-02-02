@@ -14,7 +14,7 @@ Junit, Expresso -> will do in next push
 <br />
 
 
-- The repo will demonstrate<br>
+## The repo will demonstrate
 - how to make MVVM Architecture, <br />
 - how to make API calls <br />
 - how to cache the API data to local database<br />
