@@ -8,6 +8,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_trending_repo.*
@@ -28,7 +29,7 @@ class TrendingRepoActivity : AppCompatActivity(), KodeinAware {
 
     private val factory: TrendingRepoViewModelFactory by instance()
     private val viewModel: TrendingRepoViewModel by lazy {
-        ViewModelProviders.of(this, factory).get(TrendingRepoViewModel::class.java)
+        ViewModelProvider(this, factory).get(TrendingRepoViewModel::class.java)
     }
     private val adapter: RecyclerAdapter by instance()
     private var networkState: NetworkState = NetworkState.LOADED
@@ -101,7 +102,7 @@ class TrendingRepoActivity : AppCompatActivity(), KodeinAware {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item!!.itemId) {
             R.id.menuSortByStars -> {
                 viewModel.filterList(true, adapter.getList())

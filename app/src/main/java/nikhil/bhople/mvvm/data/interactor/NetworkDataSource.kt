@@ -36,13 +36,13 @@ class NetworkDataSource(
                     },
                     {
                         _networkState.postValue(NetworkState.ERROR)
-                        Log.e("NIK", it.message)
+                        Log.e("NIK", it.message.toString())
                     }
                 )
 
         } catch (e: Exception) {
             _networkState.postValue(NetworkState.ERROR)
-            Log.e("NIK", e.message)
+            Log.e("NIK", e.message.toString())
         }
     }
 }
